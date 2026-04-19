@@ -73,7 +73,7 @@ Reply with ONLY valid JSON — no markdown:
     {
       "roomType": "detected room type",
       "currentState": "one sentence describing current state",
-      "prompt": "Transform this room dramatically: [write 3-4 rich sentences describing the fully renovated space — specific stone, wood, metal finishes, cabinetry style, lighting, textiles, color palette, architectural details like arches/molding/beams, and overall elegant atmosphere] — photorealistic, professional interior photography, highly detailed, luxury renovation"
+      "prompt": "The exact same room — identical layout, same island/furniture positions, same window and door placement, same ceiling height and proportions — but every surface, material, and finish has been transformed: [write 3-4 rich sentences describing ONLY the new materials and finishes: specific countertop stone, cabinet paint color and style, hardware metal finish, flooring, lighting fixtures, textiles, decorative objects, wall color, and overall elegant atmosphere in the inspiration style] — photorealistic, professional interior photography, highly detailed, luxury renovation, same room architecture"
     }
   ]
 }
