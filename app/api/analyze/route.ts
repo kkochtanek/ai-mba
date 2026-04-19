@@ -71,7 +71,7 @@ Reply with ONLY valid JSON — no markdown:
     {
       "roomType": "detected room type",
       "currentState": "one sentence describing current state",
-      "prompt": "detailed photorealistic renovation visualization: [describe the transformed room preserving its layout/windows/structure], renovated in the style of ${inspiration}, ${budget} budget, professional interior photography, high detail, natural lighting"
+      "prompt": "Transform this [room type] into a [style] renovation — write as a short instruction starting with 'Transform this room', describing the new materials, colors, furniture style, and finishes in the style of the inspiration, ${budget} budget feel"
     }
   ]
 }
