@@ -71,7 +71,7 @@ type Step = "home" | "style" | "rooms" | "options" | "results";
 
 const BUDGETS = ["Affordable", "Mid-Range", "Luxury"];
 const SCOPES = ["Light Refresh", "Full Renovation", "Complete Gut"];
-const PRESETS = ["Studio McGee", "Amber Lewis", "Joanna Gaines", "Nate Berkus", "Kelly Wearstler", "Restoration Hardware"];
+const PRESETS = ["@apriljoy_ful", "Studio McGee", "Amber Lewis", "Joanna Gaines", "Nate Berkus", "Kelly Wearstler", "Restoration Hardware"];
 
 interface RoomPhoto {
   file: File;
