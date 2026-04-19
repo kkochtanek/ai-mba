@@ -11,16 +11,18 @@ export async function POST(req: NextRequest) {
     input: {
       prompt,
       num_outputs: 1,
-      aspect_ratio: "1:1",
+      aspect_ratio: "4:3",
       output_format: "webp",
       output_quality: 90,
     },
   });
 
-  const images = output as string[];
-  if (!images || images.length === 0) {
+  const images = Array.isArray(output) ? output : [output];
+  if (images.length === 0) {
     return NextResponse.json({ error: "No image generated" }, { status: 500 });
   }
 
-  return NextResponse.json({ imageUrl: images[0] });
+  // Handle both plain string URLs and Replicate FileOutput objects
+  const imageUrl = String(images[0]);
+  return NextResponse.json({ imageUrl });
 }
