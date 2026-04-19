@@ -15,6 +15,34 @@ interface RoomResult {
   prompt: string;
 }
 
+async function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => resolve(e.target?.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function generateWithPolling(prompt: string, image: string, seed: number): Promise<string> {
+  const res = await fetch("/api/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt, image, seed }),
+  });
+  if (!res.ok) throw new Error(await res.text());
+  const { predictionId } = await res.json();
+
+  while (true) {
+    await new Promise((r) => setTimeout(r, 3000));
+    const poll = await fetch(`/api/poll?id=${predictionId}`);
+    if (!poll.ok) throw new Error(await poll.text());
+    const { status, imageUrl, error } = await poll.json();
+    if (status === "succeeded" && imageUrl) return imageUrl;
+    if (status === "failed") throw new Error(error ?? "Generation failed");
+  }
+}
+
 interface RoomImage {
   original: string;
   generated: string | null;
@@ -139,17 +167,18 @@ export default function Home() {
       setIsAnalyzing(false);
       if (timerRef.current) clearInterval(timerRef.current);
 
+      // Convert room photos to base64 for img2img
+      const roomBase64s = await Promise.all(rooms.map((r) => fileToBase64(r.file)));
+
       const generated: { generated: string; roomType: string }[] = [];
 
       await Promise.all(
         roomResults.map(async (room: RoomResult, i: number) => {
-          const genRes = await fetch("/api/generate", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt: room.prompt, seed: i * 1000 + Math.floor(Math.random() * 999) }),
-          });
-          if (!genRes.ok) throw new Error(await genRes.text());
-          const { imageUrl } = await genRes.json();
+          const imageUrl = await generateWithPolling(
+            room.prompt,
+            roomBase64s[i],
+            i * 1000 + Math.floor(Math.random() * 999)
+          );
           generated[i] = { generated: imageUrl, roomType: room.roomType };
           setRoomImages((prev) => {
             const next = [...prev];
