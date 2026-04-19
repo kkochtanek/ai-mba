@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 
 interface StyleDNA {
   style: string;
@@ -48,6 +48,8 @@ export default function Home() {
 
   // Results
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [styleDNA, setStyleDNA] = useState<StyleDNA | null>(null);
   const [summary, setSummary] = useState("");
   const [roomImages, setRoomImages] = useState<RoomImage[]>([]);
@@ -78,7 +80,9 @@ export default function Home() {
   async function handleVisualize() {
     setStep("results");
     setIsAnalyzing(true);
+    setElapsed(0);
     setError("");
+    timerRef.current = setInterval(() => setElapsed((s) => s + 1), 1000);
     setStyleDNA(null);
     setSummary("");
     setRoomImages(rooms.map((r) => ({ original: r.preview, generated: null, loaded: false })));
@@ -101,6 +105,7 @@ export default function Home() {
       setStyleDNA(dna);
       setSummary(sum);
       setIsAnalyzing(false);
+      if (timerRef.current) clearInterval(timerRef.current);
 
       await Promise.all(
         roomResults.map(async (room: RoomResult, i: number) => {
@@ -121,8 +126,11 @@ export default function Home() {
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Something went wrong");
       setIsAnalyzing(false);
+      if (timerRef.current) clearInterval(timerRef.current);
     }
   }
+
+  useEffect(() => () => { if (timerRef.current) clearInterval(timerRef.current); }, []);
 
   function reset() {
     rooms.forEach(({ preview }) => URL.revokeObjectURL(preview));
@@ -319,11 +327,28 @@ export default function Home() {
                 </div>
               </div>
             ) : isAnalyzing ? (
-              <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-6 flex items-center gap-4">
-                <div className="w-8 h-8 border-4 border-stone-200 border-t-amber-500 rounded-full animate-spin flex-shrink-0" />
-                <div>
-                  <p className="font-semibold text-stone-800">Analyzing style &amp; rooms...</p>
-                  <p className="text-sm text-stone-500">Claude is planning the renovation</p>
+              <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-6">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-8 h-8 border-4 border-stone-200 border-t-amber-500 rounded-full animate-spin flex-shrink-0" />
+                  <div>
+                    <p className="font-semibold text-stone-800">
+                      {elapsed < 20 ? "Analyzing style & rooms..." : "Generating your visualizations..."}
+                    </p>
+                    <p className="text-sm text-stone-500">
+                      {elapsed < 20
+                        ? "Claude is studying your rooms and the inspiration style"
+                        : "Image generation takes 2–4 minutes — hang tight, it's working"}
+                    </p>
+                  </div>
+                  <span className="ml-auto text-2xl font-mono text-stone-300 tabular-nums">
+                    {String(Math.floor(elapsed / 60)).padStart(2, "0")}:{String(elapsed % 60).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="h-1.5 bg-stone-100 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-amber-400 rounded-full transition-all duration-1000"
+                    style={{ width: `${Math.min((elapsed / 240) * 100, 95)}%` }}
+                  />
                 </div>
               </div>
             ) : null}
