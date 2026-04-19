@@ -31,6 +31,7 @@ export default function Home() {
   const [styleDNA, setStyleDNA] = useState<StyleDNA | null>(null);
   const [summary, setSummary] = useState("");
   const [generatedImages, setGeneratedImages] = useState<(string | null)[]>([null, null, null]);
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([false, false, false]);
   const [error, setError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -63,6 +64,7 @@ export default function Home() {
     setStyleDNA(null);
     setSummary("");
     setGeneratedImages([null, null, null]);
+    setImagesLoaded([false, false, false]);
 
     try {
       const formData = new FormData();
@@ -84,7 +86,7 @@ export default function Home() {
           const genRes = await fetch("/api/generate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt }),
+            body: JSON.stringify({ prompt, seed: i * 1000 + Math.floor(Math.random() * 999) }),
           });
           if (!genRes.ok) throw new Error(await genRes.text());
           const { imageUrl } = await genRes.json();
@@ -110,6 +112,7 @@ export default function Home() {
     setStyleDNA(null);
     setSummary("");
     setGeneratedImages([null, null, null]);
+    setImagesLoaded([false, false, false]);
     setError("");
     setLoadingPhase("idle");
   }
@@ -325,10 +328,16 @@ export default function Home() {
                     key={i}
                     className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden aspect-[4/3] flex items-center justify-center"
                   >
-                    {img ? (
+                    {img && (
                       /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={img} alt={`Dream home variation ${i + 1}`} className="w-full h-full object-cover" />
-                    ) : (
+                      <img
+                        src={img}
+                        alt={`Dream home variation ${i + 1}`}
+                        className={`w-full h-full object-cover transition-opacity duration-500 ${imagesLoaded[i] ? "opacity-100" : "opacity-0 absolute"}`}
+                        onLoad={() => setImagesLoaded((prev) => { const next = [...prev]; next[i] = true; return next; })}
+                      />
+                    )}
+                    {(!img || !imagesLoaded[i]) && (
                       <div className="flex flex-col items-center gap-2 text-stone-400">
                         <div className="w-8 h-8 border-4 border-stone-200 border-t-amber-400 rounded-full animate-spin" />
                         <p className="text-xs">Variation {i + 1}...</p>
