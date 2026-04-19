@@ -26,9 +26,47 @@ export async function POST(req: NextRequest) {
   if (!inspiration) return NextResponse.json({ error: "No inspiration provided" }, { status: 400 });
   if (files.length === 0) return NextResponse.json({ error: "No room photos provided" }, { status: 400 });
 
+  // Known influencer style profiles — detailed aesthetic briefs
+  const STYLE_PROFILES: Record<string, string> = {
+    "apriljoy_ful": `April Joy (@apriljoy_ful) is a lifestyle creator with 966K followers renovating her 2004 home in San Marcos, CA. Her signature aesthetic:
+- Warm European farmhouse meets collected elegance
+- Palette: creamy ivories, warm greiges, biscuit tones, soft taupes, warm whites — never cool or gray
+- Plaster-finish walls with subtle texture, often in warm bone or clay tones
+- Arched doorways, arched cabinet insets, arched niches — architectural arches are her signature
+- Statement range hoods: large, plaster-finished or custom wood hoods that anchor the kitchen
+- Cabinetry: inset shaker or flat-panel in creamy white or warm greige, often two-toned
+- Hardware: unlacquered brass, antique brass, or brushed gold — never chrome or nickel
+- Countertops: honed or leathered natural stone — Calacatta marble, quartzite, warm-veined stone
+- Open shelving with curated ceramic, terracotta, and wooden objects
+- Statement pendant lighting: rattan, aged brass, blown glass, or forged iron
+- Flooring: wide-plank white oak, warm honey wood tones, or terracotta tile
+- Layered textiles: linen, cotton, jute, natural fibers — never synthetic-looking
+- Collected, lived-in feel — not sterile or overly staged
+- Plants and greenery woven throughout, terracotta pots
+- Overall mood: warm, elegant, deeply personal, quietly luxurious`,
+    "studio mcgee": `Studio McGee (Shea McGee) signature aesthetic:
+- Clean transitional style — classic bones with fresh, airy execution
+- Palette: crisp whites, soft warm creams, greige, navy accents
+- Statement lighting as focal points in every room
+- Mix of textures: linen, velvet, jute, wood, marble
+- Shaker cabinetry in white or soft greige, often floor-to-ceiling
+- Quartz or marble countertops, waterfall islands
+- Polished nickel or brushed gold hardware
+- Layered rugs, throw pillows, curated styling
+- Tall ceilings, large windows, natural light
+- Elegant but approachable, family-friendly luxury`,
+  };
+
   // If inspiration looks like a URL, try to fetch it
   let inspirationContext = inspiration;
-  if (inspiration.startsWith("http")) {
+
+  // Check known style profiles first
+  const profileKey = Object.keys(STYLE_PROFILES).find((k) =>
+    inspiration.toLowerCase().includes(k.toLowerCase())
+  );
+  if (profileKey) {
+    inspirationContext = STYLE_PROFILES[profileKey];
+  } else if (inspiration.startsWith("http")) {
     const fetched = await fetchUrlText(inspiration);
     if (fetched) inspirationContext = `URL: ${inspiration}\n\nPage content: ${fetched}`;
   }
