@@ -84,12 +84,14 @@ Return exactly ${files.length} room object(s) in the array, one per uploaded pho
   });
 
   const raw = message.content[0].type === "text" ? message.content[0].text : "";
-  // Strip markdown code fences if Claude wrapped the JSON
-  const text = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "").trim();
+  // Extract JSON by finding outermost { } — works regardless of markdown wrapping
+  const start = raw.indexOf("{");
+  const end = raw.lastIndexOf("}");
+  const jsonStr = start !== -1 && end !== -1 ? raw.slice(start, end + 1) : raw;
 
   try {
-    return NextResponse.json(JSON.parse(text));
+    return NextResponse.json(JSON.parse(jsonStr));
   } catch {
-    return NextResponse.json({ error: `Parse error: ${text.slice(0, 200)}` }, { status: 500 });
+    return NextResponse.json({ error: `Parse error: ${raw.slice(0, 200)}` }, { status: 500 });
   }
 }
