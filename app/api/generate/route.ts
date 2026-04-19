@@ -15,9 +15,9 @@ export async function POST(req: NextRequest) {
       input: {
         prompt,
         image,
-        prompt_strength: 0.75,
-        num_inference_steps: 28,
-        guidance: 3.5,
+        prompt_strength: 0.92,
+        num_inference_steps: 50,
+        guidance: 4.5,
         seed: seed ?? Math.floor(Math.random() * 99999),
       },
     });

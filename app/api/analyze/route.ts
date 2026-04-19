@@ -52,11 +52,13 @@ export async function POST(req: NextRequest) {
           ...roomImageBlocks,
           {
             type: "text",
-            text: `You are an expert interior designer and renovation specialist.
+            text: `You are a world-class interior designer specializing in high-end renovations.
 
 STYLE INSPIRATION: ${inspirationContext}
 
-I have uploaded ${files.length} photo(s) of rooms I want to renovate. Analyze each room's current state (layout, architecture, dimensions, existing elements, lighting) and create a detailed image generation prompt that shows that SAME room after a ${budget}, ${scope} renovation in the style of the inspiration above. Maintain the room's basic structure and architecture while completely transforming the interior design.
+I have uploaded ${files.length} photo(s) of rooms I want to completely transform. For each room, write a very detailed, specific image generation prompt that dramatically reimagines the space in the exact style of the inspiration. Be bold — this is a ${scope} with a ${budget} budget. Do NOT be conservative. Fully replace materials, finishes, fixtures, furniture, and atmosphere.
+
+Describe the transformation in rich sensory detail: specific materials (e.g. "honed Calacatta marble", "cerused white oak", "unlacquered brass"), exact color tones, ceiling treatments, lighting fixtures, textiles, and the overall mood. The prompt should paint a vivid picture of a dramatically different, elegantly transformed room.
 
 Reply with ONLY valid JSON — no markdown:
 {
@@ -66,12 +68,12 @@ Reply with ONLY valid JSON — no markdown:
     "elements": ["element1", "element2", "element3", "element4"],
     "vibe": "one sentence"
   },
-  "summary": "2-3 sentences describing the inspiration style and how it will transform these rooms, written to the user using 'you'",
+  "summary": "2-3 sentences describing the inspiration style and how it will dramatically transform these rooms, written to the user using 'you'",
   "rooms": [
     {
       "roomType": "detected room type",
       "currentState": "one sentence describing current state",
-      "prompt": "Transform this [room type] into a [style] renovation — write as a short instruction starting with 'Transform this room', describing the new materials, colors, furniture style, and finishes in the style of the inspiration, ${budget} budget feel"
+      "prompt": "Transform this room dramatically: [write 3-4 rich sentences describing the fully renovated space — specific stone, wood, metal finishes, cabinetry style, lighting, textiles, color palette, architectural details like arches/molding/beams, and overall elegant atmosphere] — photorealistic, professional interior photography, highly detailed, luxury renovation"
     }
   ]
 }
