@@ -83,7 +83,9 @@ Return exactly ${files.length} room object(s) in the array, one per uploaded pho
     ],
   });
 
-  const text = message.content[0].type === "text" ? message.content[0].text : "";
+  const raw = message.content[0].type === "text" ? message.content[0].text : "";
+  // Strip markdown code fences if Claude wrapped the JSON
+  const text = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "").trim();
 
   try {
     return NextResponse.json(JSON.parse(text));
