@@ -5,32 +5,99 @@ export const team = {
   league: "City of Clayton Parks & Recreation Youth Soccer",
   school: "Meramec Elementary",
   city: "Clayton, MO",
-  color: "Purple",
-  roster: 11,
+  roster: 12,
   grade: "Kindergarten",
   weatherHotline: "314-290-8515",
   teamSidelineUrl: "https://www.teamsideline.com/sites/claytonmo/home",
 };
 
-export const coaches = [
+export type Coach = {
+  name: string;
+  initials: string;
+  role: string;
+  email: string;
+  phone?: string;
+};
+
+export const coaches: Coach[] = [
+  { name: "Caitlin McGrath", initials: "CM", role: "Head Coach", email: "cmcgrath410@gmail.com", phone: "618-971-6747" },
+  { name: "Craig McGrath", initials: "CM", role: "Head Coach", email: "craigmcgrath12@gmail.com", phone: "847-858-2090" },
+  { name: "Kyle Kochtanek", initials: "KK", role: "Assistant Coach", email: "kkochtanek@gmail.com" },
+  { name: "Matt Hynes", initials: "MH", role: "Assistant Coach", email: "mhynes57@gmail.com", phone: "314-899-7105" },
+];
+
+export type Guardian = {
+  name?: string;
+  email: string;
+  phone?: string;
+};
+
+export type Player = {
+  name: string;
+  guardians: Guardian[];
+};
+
+export const players: Player[] = [
+  { name: "Zoe Aronson", guardians: [{ name: "Julie Laronson", email: "julielaronson@gmail.com" }] },
+  { name: "Danaran Asusing", guardians: [{ email: "asusing@gmail.com" }] },
+  { name: "Caden Goette", guardians: [{ email: "srgoette@gmail.com" }] },
   {
-    name: "Caitlin & Craig McGrath",
-    initials: "CM",
-    role: "Head Coaches",
-    blurb: "Parents of Gemma (Kindergarten) and Audrey (3rd grade) at Meramec.",
+    name: "Finnegan Hynes",
+    guardians: [
+      { name: "Matt Hynes", email: "mhynes57@gmail.com", phone: "314-899-7105" },
+      { name: "Kelleigh Briden", email: "kelleigh.briden@gmail.com", phone: "401-419-5974" },
+    ],
   },
   {
-    name: "Kyle Kochtanek",
-    initials: "KK",
-    role: "Assistant Coach",
-    blurb: "Kennedy's dad. Signed on to help out at practices and games this fall.",
+    name: "Lily Kao-Rabinowitz",
+    guardians: [
+      { name: "Mimi Kao", email: "cmimikao@gmail.com", phone: "513-305-5747" },
+      { name: "Edon Rabinowitz", email: "ejrabin@gmail.com", phone: "516-510-8499" },
+    ],
   },
   {
-    name: "Matt Hynes",
-    initials: "MH",
-    role: "Assistant Coach",
-    blurb: "Helping the Purple Team out at practices, games, and rainy-day calls.",
+    name: "Kennedy Kochtanek",
+    guardians: [
+      { name: "Ali Kochtanek", email: "alyssa.kochtanek@gmail.com", phone: "314-795-1765" },
+      { name: "Kyle Kochtanek", email: "kkochtanek@gmail.com" },
+    ],
   },
+  {
+    name: "Mikhail “Misha” Makarov",
+    guardians: [
+      { name: "Katy Cole", email: "kmcole1105@gmail.com", phone: "660-998-2138" },
+      { name: "Konstantin Makarov", email: "makarovestates@gmail.com", phone: "573-823-1880" },
+    ],
+  },
+  {
+    name: "Gemma McGrath",
+    guardians: [
+      { name: "Caitlin McGrath", email: "cmcgrath410@gmail.com", phone: "618-971-6747" },
+      { name: "Craig McGrath", email: "craigmcgrath12@gmail.com", phone: "847-858-2090" },
+    ],
+  },
+  {
+    name: "Leighton Mosbacher",
+    guardians: [
+      { name: "Heidi Morris-Mosbacher", email: "morris.heidi.l@gmail.com", phone: "314-484-1996" },
+      { name: "J.T. Mosbacher", email: "jtmosbacher@gmail.com", phone: "314-401-9471" },
+    ],
+  },
+  {
+    name: "Matthew Ralko",
+    guardians: [
+      { name: "Charis Ralko", email: "charisfischer@gmail.com", phone: "973-951-1660" },
+      { name: "Adam Ralko", email: "amralko@gmail.com", phone: "734-634-7215" },
+    ],
+  },
+  {
+    name: "Hallie Shipe",
+    guardians: [
+      { name: "Jaime Hook", email: "hoojp@hotmail.com", phone: "314-566-5087" },
+      { name: "Matthew Shipe", email: "mashipe@wustl.edu", phone: "314-540-7315" },
+    ],
+  },
+  { name: "Emily Young", guardians: [{ email: "jenniferrkieffer@gmail.com" }] },
 ];
 
 export const practices = [
@@ -38,12 +105,14 @@ export const practices = [
     day: "Monday",
     time: "6:00 – 7:00 PM",
     location: "Shaw Park, Field 5",
+    field: "5" as const,
     note: "Every Monday, all season long.",
   },
   {
     day: "Saturday",
     time: "2:00 – 3:15 PM",
     location: "Shaw Park, Field 3",
+    field: "3" as const,
     note: "Preseason only — August 15 & August 22. Wraps up once games begin.",
   },
 ];
@@ -61,6 +130,16 @@ export const equipment = [
   "A water bottle",
   "Everything else — jerseys, balls, and gear — is provided by the league.",
 ];
+
+/** Next scheduled team activity, shown with the field map on the homepage. */
+export const nextEvent = {
+  kind: "Practice" as const,
+  day: "Saturday, August 22",
+  time: "2:00 – 3:15 PM",
+  field: "3" as const,
+  location: "Shaw Park, Field 3",
+  note: "Last preseason Saturday before games start.",
+};
 
 export type NewsItem = {
   date: string;
@@ -91,7 +170,7 @@ export const news: NewsItem[] = [
   {
     date: "August 10, 2026",
     title: "First practice of the season!",
-    body: "The Purple Team hit the field at Shaw Park for the very first practice of the 2026 season. Eleven kindergartners, lots of energy, and a great start.",
+    body: "The Purple Team hit the field at Shaw Park for the very first practice of the 2026 season. Twelve kindergartners, lots of energy, and a great start.",
     tag: "Practice",
   },
   {
@@ -103,7 +182,7 @@ export const news: NewsItem[] = [
   {
     date: "August 1, 2026",
     title: "Welcome to Kindergarten Soccer, Purple Team!",
-    body: "Coach Caitlin sent the season kickoff email: 11 kiddos on the roster, practices starting the following Monday at Shaw Park, and a call for a few more parents to help coach. No soccer knowledge required!",
+    body: "Coach Caitlin sent the season kickoff email: kiddos on the roster, practices starting the following Monday at Shaw Park, and a call for a few more parents to help coach. No soccer knowledge required!",
     tag: "Announcement",
   },
 ];

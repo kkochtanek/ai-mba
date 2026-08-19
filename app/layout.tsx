@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Fredoka, Inter } from "next/font/google";
+import { Anton, Barlow } from "next/font/google";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import "./globals.css";
 
-const fredoka = Fredoka({
-  variable: "--font-fredoka",
+const anton = Anton({
+  variable: "--font-anton",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const barlow = Barlow({
+  variable: "--font-barlow",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${fredoka.variable} ${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${anton.variable} ${barlow.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)]">
         <Nav />
         <main className="flex-1">{children}</main>

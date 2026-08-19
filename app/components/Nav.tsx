@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import SoccerBall from "./SoccerBall";
+import Crest from "./Crest";
 
 const links = [
   { href: "/", label: "Home" },
@@ -16,15 +16,15 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-purple-100">
+    <header className="sticky top-0 z-30 bg-navy-900 border-b-[3px] border-orange-600">
       <div className="max-w-5xl mx-auto px-5 flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="flex items-center justify-center w-9 h-9 rounded-full bg-purple-600 text-white">
-            <SoccerBall className="w-5 h-5" />
-          </span>
-          <span className="font-heading text-lg text-purple-900 leading-tight">
-            Meramec Kindergarten
-            <span className="block text-xs font-sans font-semibold tracking-wide text-purple-600 uppercase">
+        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+          <Crest className="w-9 h-9" />
+          <span className="leading-tight">
+            <span className="block font-display text-white text-base tracking-wide">
+              Meramec Kindergarten
+            </span>
+            <span className="block text-[0.65rem] font-bold tracking-[0.14em] text-orange-600 uppercase">
               Purple Team · 2026
             </span>
           </span>
@@ -35,7 +35,7 @@ export default function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              className="px-4 py-2 rounded-full text-sm font-semibold text-purple-900 hover:bg-purple-50 transition-colors"
+              className="px-4 py-2 text-sm font-bold uppercase tracking-wide text-navy-100 hover:text-white hover:bg-white/10 transition-colors"
             >
               {l.label}
             </Link>
@@ -44,7 +44,7 @@ export default function Nav() {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="sm:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-purple-50 text-purple-900"
+          className="sm:hidden w-10 h-10 flex items-center justify-center text-white"
           aria-label="Toggle menu"
         >
           {open ? "✕" : "☰"}
@@ -52,13 +52,13 @@ export default function Nav() {
       </div>
 
       {open && (
-        <nav className="sm:hidden border-t border-purple-100 bg-white px-5 py-3 flex flex-col gap-1">
+        <nav className="sm:hidden border-t border-white/10 bg-navy-900 px-5 py-3 flex flex-col gap-1">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="px-3 py-2.5 rounded-xl text-sm font-semibold text-purple-900 hover:bg-purple-50 transition-colors"
+              className="px-3 py-2.5 text-sm font-bold uppercase tracking-wide text-navy-100 hover:text-white transition-colors"
             >
               {l.label}
             </Link>

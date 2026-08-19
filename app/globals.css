@@ -1,42 +1,64 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf8ff;
-  --foreground: #2e1065;
-  --purple-900: #3b0764;
-  --purple-700: #6d28d9;
-  --purple-600: #7c3aed;
-  --purple-100: #ede9fe;
-  --purple-50: #f5f3ff;
-  --gold: #f5b544;
-  --grass: #1a9c5c;
+  --background: #f3f5fa;
+  --foreground: #0b1a30;
+
+  --navy-900: #081736;
+  --navy-700: #123163;
+  --navy-600: #1c4faa;
+  --navy-100: #dde5f5;
+  --navy-50: #eef1fa;
+
+  --orange-700: #b9440f;
+  --orange-600: #ef6a1f;
+  --orange-100: #fde3d0;
+
+  --text-muted: #4c5a76;
+  --border: #dbe1f0;
+  --shadow: 0 1px 2px rgba(8, 23, 54, 0.05), 0 10px 26px rgba(8, 23, 54, 0.08);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-purple-900: var(--purple-900);
-  --color-purple-700: var(--purple-700);
-  --color-purple-600: var(--purple-600);
-  --color-purple-100: var(--purple-100);
-  --color-purple-50: var(--purple-50);
-  --color-gold: var(--gold);
-  --color-grass: var(--grass);
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-fredoka);
+  --color-navy-900: var(--navy-900);
+  --color-navy-700: var(--navy-700);
+  --color-navy-600: var(--navy-600);
+  --color-navy-100: var(--navy-100);
+  --color-navy-50: var(--navy-50);
+  --color-orange-700: var(--orange-700);
+  --color-orange-600: var(--orange-600);
+  --color-orange-100: var(--orange-100);
+  --color-text-muted: var(--text-muted);
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-anton);
+  --font-body: var(--font-barlow);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-barlow), system-ui, sans-serif;
 }
 
-.font-heading {
-  font-family: var(--font-fredoka), system-ui, sans-serif;
+.font-display {
+  font-family: var(--font-anton), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1.5px, transparent 1.5px);
   background-size: 20px 20px;
+}
+
+.stripe-edge {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--orange-600),
+    var(--orange-600) 14px,
+    var(--navy-900) 14px,
+    var(--navy-900) 28px
+  );
 }
