@@ -1,4 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+
+// Site is inactive — short-circuited before any Replicate API spend.
+// Remove this handler and restore the block below to re-enable.
+export async function POST(_req: NextRequest) {
+  return NextResponse.json({ error: "This feature is temporarily disabled." }, { status: 503 });
+}
+
+/*
 import Replicate from "replicate";
 
 const replicate = new Replicate({ auth: process.env.REPLICATE_API_TOKEN });
@@ -27,3 +35,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: `Replicate error: ${msg}` }, { status: 500 });
   }
 }
+*/

@@ -1,4 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+
+// Site is inactive — short-circuited before any Claude API spend.
+// Remove this handler and restore the block below to re-enable.
+export async function POST(_req: NextRequest) {
+  return NextResponse.json({ error: "This feature is temporarily disabled." }, { status: 503 });
+}
+
+/*
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -135,3 +143,4 @@ Return exactly ${files.length} room object(s) in the array, one per uploaded pho
     return NextResponse.json({ error: `Parse error: ${raw.slice(0, 200)}` }, { status: 500 });
   }
 }
+*/
