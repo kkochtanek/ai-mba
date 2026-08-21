@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { practices, seasonMilestones, team, nextEvent } from "@/lib/team-data";
+import { practices, seasonMilestones, team, nextEvent, gameTimePattern, gameExceptions } from "@/lib/team-data";
 import ShawParkMap from "../components/ShawParkMap";
 
 export const metadata: Metadata = {
@@ -15,8 +15,7 @@ export default function SchedulePage() {
       <h1 className="font-display text-5xl text-navy-900 mb-3">Schedule</h1>
       <p className="text-text-muted max-w-2xl mb-10">
         Practices happen every week at Shaw Park. Games start the weekend of
-        August 29th — the full slate posts to TeamSideline once the league
-        releases it.
+        August 29th — the full slate is live on TeamSideline.
       </p>
 
       <div className="grid gap-8 lg:grid-cols-5">
@@ -47,22 +46,35 @@ export default function SchedulePage() {
             <h2 className="font-display text-xl text-navy-900 mb-4 border-b-2 border-orange-600 pb-2">
               Games
             </h2>
-            <ul className="space-y-2 text-sm text-navy-700">
+            <ul className="space-y-2 text-sm text-navy-700 mb-4">
               <li>• Begin the weekend of August 29 – 30, 2026</li>
-              <li>• Played Saturdays &amp; Sundays</li>
-              <li>
-                • Full schedule posted on{" "}
-                <a
-                  href={team.teamSidelineUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-orange-700 underline hover:text-orange-600"
-                >
-                  TeamSideline
-                </a>
-              </li>
+              {gameTimePattern.map((line) => (
+                <li key={line}>• {line}</li>
+              ))}
               <li>• Snack rotation sign-up shared once game dates are set</li>
             </ul>
+
+            {gameExceptions.length > 0 && (
+              <div className="bg-orange-100 border border-orange-600/30 rounded p-3 mb-4">
+                <p className="text-xs font-bold uppercase tracking-wide text-orange-700 mb-1">
+                  Schedule Exception
+                </p>
+                {gameExceptions.map((g) => (
+                  <p key={g.date} className="text-sm text-navy-900">
+                    <strong>{g.date} · {g.time}</strong> — {g.note}
+                  </p>
+                ))}
+              </div>
+            )}
+
+            <a
+              href={team.teamSidelineUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-orange-700 underline hover:text-orange-600 text-sm"
+            >
+              View the full schedule on TeamSideline →
+            </a>
           </section>
 
           <section className="bg-navy-900 text-white p-7">

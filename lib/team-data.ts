@@ -8,7 +8,7 @@ export const team = {
   roster: 12,
   grade: "Kindergarten",
   weatherHotline: "314-290-8515",
-  teamSidelineUrl: "https://www.teamsideline.com/sites/claytonmo/home",
+  teamSidelineUrl: "https://teamsideline.com/sites/claytonmo/schedule/736715/Kindergarten-Red",
 };
 
 export type Coach = {
@@ -120,8 +120,18 @@ export const practices = [
 export const seasonMilestones = [
   { label: "First practice", value: "Monday, August 10, 2026" },
   { label: "Games begin", value: "Weekend of August 29 – 30, 2026" },
-  { label: "Game days", value: "Saturdays & Sundays" },
-  { label: "Full schedule", value: "Posted on TeamSideline" },
+  { label: "Game days", value: "Sat mornings & Sun afternoons" },
+  { label: "Full schedule", value: "Live on TeamSideline" },
+];
+
+/** Recurring game-time pattern, per Coach Caitlin's Aug 20 email. One-off exceptions listed separately. */
+export const gameTimePattern = [
+  "Most Saturdays: 9:00 AM or 10:00 AM",
+  "Most Sundays: early afternoon",
+];
+
+export const gameExceptions = [
+  { date: "Monday, September 14", time: "6:00 PM", note: "The one weekday game — falls during a normal practice slot." },
 ];
 
 export const equipment = [
@@ -150,9 +160,15 @@ export type NewsItem = {
 
 export const news: NewsItem[] = [
   {
+    date: "August 20, 2026",
+    title: "Game schedule is live — team name coming Monday",
+    body: "Coach Caitlin posted the full game schedule to TeamSideline (and the shared team calendar). Most games are Saturday mornings (9 or 10 AM) and Sunday early afternoons, with one exception — a Monday, September 14th game at 6 PM. Next up: Saturday practice at 2 PM, then the kids pick the team name at Monday 8/24 practice — uniforms should be in by then, too.",
+    tag: "Schedule",
+  },
+  {
     date: "August 17, 2026",
-    title: "Monday practice canceled — wet field",
-    body: "Coach Matt let the team know practice was called off on short notice after the recent rain left the field unplayable. Back at it Wednesday... er, next Monday!",
+    title: "Monday practice canceled — field locked",
+    body: "Short-notice cancellation: Coach Matt found the field too wet to use, and the team later learned the gate had been locked following the rain. Apologies for the late word — back at it the following Monday.",
     tag: "Practice",
   },
   {
