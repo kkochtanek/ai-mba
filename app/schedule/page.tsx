@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { practices, seasonMilestones, team, nextEvent, gameTimePattern, gameExceptions } from "@/lib/team-data";
+import { practices, seasonMilestones, team, nextEvent, games, gameTimePattern, gameExceptions } from "@/lib/team-data";
 import ShawParkMap from "../components/ShawParkMap";
 
 export const metadata: Metadata = {
@@ -46,8 +46,31 @@ export default function SchedulePage() {
             <h2 className="font-display text-xl text-navy-900 mb-4 border-b-2 border-orange-600 pb-2">
               Games
             </h2>
+
+            {games.length > 0 && (
+              <div className="space-y-3 mb-5">
+                {games.map((g) => (
+                  <div key={g.date} className="flex gap-4">
+                    <span className="font-display text-3xl text-orange-600 leading-none w-14 shrink-0">
+                      {g.field}
+                    </span>
+                    <div>
+                      <p className="font-bold text-navy-900">
+                        {g.date} · {g.time}
+                      </p>
+                      <p className="text-sm text-navy-700 font-semibold">{g.location}</p>
+                      {g.opponent && <p className="text-sm text-navy-700">vs. {g.opponent}</p>}
+                      {g.note && <p className="text-sm text-text-muted mt-0.5">{g.note}</p>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <p className="text-xs font-bold uppercase tracking-wide text-text-muted mb-2">
+              Beyond that, the recurring pattern
+            </p>
             <ul className="space-y-2 text-sm text-navy-700 mb-4">
-              <li>• Begin the weekend of August 29 – 30, 2026</li>
               {gameTimePattern.map((line) => (
                 <li key={line}>• {line}</li>
               ))}
@@ -93,8 +116,8 @@ export default function SchedulePage() {
           <div className="bg-white border border-navy-100 p-5">
             <ShawParkMap activeField={nextEvent.field} />
             <p className="text-xs text-text-muted mt-3">
-              Fields 3, 5, and 5B at Shaw Park — Field {nextEvent.field} is highlighted
-              for the next practice or game ({nextEvent.day}).
+              Official Shaw Park field map (City of Clayton) — Field {nextEvent.field} is
+              pinned for the next {nextEvent.kind.toLowerCase()} ({nextEvent.day}).
             </p>
           </div>
 

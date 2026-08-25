@@ -104,16 +104,29 @@ export const practices = [
   {
     day: "Monday",
     time: "6:00 – 7:00 PM",
-    location: "Shaw Park, Field 5",
-    field: "5" as const,
+    location: "Shaw Park, Field 6",
+    field: "6" as const,
     note: "Every Monday, all season long.",
   },
+];
+
+export type Game = {
+  date: string;
+  time: string;
+  field: "6D" | "3" | "5" | "5B";
+  location: string;
+  opponent?: string;
+  note?: string;
+};
+
+/** Confirmed games, pulled from coach emails as they come in. Full slate is on TeamSideline. */
+export const games: Game[] = [
   {
-    day: "Saturday",
-    time: "2:00 – 3:15 PM",
-    location: "Shaw Park, Field 3",
-    field: "3" as const,
-    note: "Preseason only — August 15 & August 22. Wraps up once games begin.",
+    date: "Saturday, August 29, 2026",
+    time: "9:00 – 10:00 AM",
+    field: "6D",
+    location: "Shaw Park, Field 6D",
+    note: "First game of the season! Arrive ~8:40 AM — a few uniforms still need to be handed out.",
   },
 ];
 
@@ -143,12 +156,12 @@ export const equipment = [
 
 /** Next scheduled team activity, shown with the field map on the homepage. */
 export const nextEvent = {
-  kind: "Practice" as const,
-  day: "Saturday, August 22",
-  time: "2:00 – 3:15 PM",
-  field: "3" as const,
-  location: "Shaw Park, Field 3",
-  note: "Last preseason Saturday before games start.",
+  kind: "Game" as const,
+  day: "Saturday, August 29",
+  time: "9:00 – 10:00 AM",
+  field: "6D" as const,
+  location: "Shaw Park, Field 6D",
+  note: "First game of the season! Arrive ~8:40 AM.",
 };
 
 export type NewsItem = {
@@ -159,6 +172,18 @@ export type NewsItem = {
 };
 
 export const news: NewsItem[] = [
+  {
+    date: "August 24, 2026",
+    title: "First game set — Saturday, Field 6D at 9 AM",
+    body: "Monday's practice got rained out, but Coach Caitlin confirmed the season opener: Saturday, August 29th, 9:00–10:00 AM at Field 6D. Arrive around 8:40 to help pass out any remaining uniforms before kickoff.",
+    tag: "Schedule",
+  },
+  {
+    date: "August 24, 2026",
+    title: "It's official: the Purple Popsicles!",
+    body: "The team picked its name at Monday practice, uniforms arrived and got handed out, and snack sign-up for game days is open. Go Purple Popsicles!",
+    tag: "Announcement",
+  },
   {
     date: "August 20, 2026",
     title: "Game schedule is live — team name coming Monday",

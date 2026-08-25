@@ -91,14 +91,14 @@ export default function Home() {
           <ShawParkMap activeField={nextEvent.field} />
           <p className="text-xs text-text-muted mt-3">
             Official Shaw Park field map (City of Clayton) — Field {nextEvent.field} is
-            pinned for the next practice or game.
+            pinned for the next {nextEvent.kind.toLowerCase()}.
           </p>
         </div>
       </section>
 
-      {/* This week */}
+      {/* Weekly practice */}
       <section className="max-w-5xl mx-auto px-5 pb-16">
-        <h2 className="font-display text-2xl text-navy-900 mb-5">This Week</h2>
+        <h2 className="font-display text-2xl text-navy-900 mb-5">Weekly Practice</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           {practices.map((p) => (
             <div key={p.day} className="bg-navy-50 border border-navy-100 p-5 flex gap-4">

@@ -1,10 +1,12 @@
-type FieldId = "3" | "5" | "5B";
+type FieldId = "3" | "5" | "5B" | "6" | "6D";
 
 /** Percent position of each field's number badge, read directly off the source PDF's text layer. */
 const FIELD_POS: Record<FieldId, { x: number; y: number }> = {
   "3": { x: 68.6, y: 44.5 },
   "5": { x: 36.1, y: 58.9 },
   "5B": { x: 41.8, y: 54.4 },
+  "6": { x: 22.1, y: 58.8 },
+  "6D": { x: 30.2, y: 62.8 },
 };
 
 export default function ShawParkMap({ activeField }: { activeField: FieldId }) {
