@@ -111,40 +111,113 @@ export const practices = [
 ];
 
 export type Game = {
+  week: number;
   date: string;
   time: string;
-  field: "6D" | "3" | "5" | "5B";
+  opponent: string;
+  home: boolean;
   location: string;
-  opponent?: string;
+  field?: "6D" | "3A" | "3" | "5" | "5B" | "6";
   note?: string;
 };
 
-/** Confirmed games, pulled from coach emails as they come in. Full slate is on TeamSideline. */
+export type ByeWeek = {
+  week: number;
+  label: string;
+  note?: string;
+};
+
+/**
+ * Full 2026 game schedule for Clayton (McGrath) — Kindergarten Red — from TeamSideline.
+ * Schedule revision date: Tue, Aug 18, 2026 3:54 PM. (https://teamsideline.com/sites/claytonmo/schedule/736715/Kindergarten-Red)
+ */
 export const games: Game[] = [
   {
+    week: 1,
     date: "Saturday, August 29, 2026",
-    time: "9:00 – 10:00 AM",
-    field: "6D",
+    time: "9:00 AM",
+    opponent: "Central Christian (Edwards)",
+    home: true,
     location: "Shaw Park, Field 6D",
+    field: "6D",
     note: "First game of the season! Arrive ~8:40 AM — a few uniforms still need to be handed out.",
   },
+  {
+    week: 4,
+    date: "Monday, September 14, 2026",
+    time: "6:00 PM",
+    opponent: "Clayton (Busebee)",
+    home: false,
+    location: "Shaw Park, Field 3A",
+    field: "3A",
+    note: "The one weekday game — falls during a normal practice slot.",
+  },
+  {
+    week: 4,
+    date: "Sunday, September 20, 2026",
+    time: "1:00 PM",
+    opponent: "Forsyth (Turner)",
+    home: false,
+    location: "Shaw Park, Field 6D",
+    field: "6D",
+  },
+  {
+    week: 5,
+    date: "Sunday, September 27, 2026",
+    time: "2:00 PM",
+    opponent: "New City (Denlow)",
+    home: true,
+    location: "Shaw Park, Field 6D",
+    field: "6D",
+  },
+  {
+    week: 6,
+    date: "Sunday, October 4, 2026",
+    time: "2:00 PM",
+    opponent: "Rohan Woods (Mueth)",
+    home: false,
+    location: "Shaw Park (field not listed on TeamSideline yet)",
+  },
+  {
+    week: 7,
+    date: "Sunday, October 11, 2026",
+    time: "1:00 PM",
+    opponent: "College School (Bruntrager)",
+    home: false,
+    location: "Shaw Park, Field 6D",
+    field: "6D",
+  },
+  {
+    week: 8,
+    date: "Sunday, October 18, 2026",
+    time: "1:00 PM",
+    opponent: "Clayton (Szyman)",
+    home: true,
+    location: "Shaw Park, Field 6D",
+    field: "6D",
+  },
+  {
+    week: 9,
+    date: "Saturday, October 24, 2026",
+    time: "10:00 AM",
+    opponent: "Central Christian (Beldner)",
+    home: true,
+    location: "Shaw Park, Field 6D",
+    field: "6D",
+  },
+];
+
+export const byeWeeks: ByeWeek[] = [
+  { week: 2, label: "Labor Day Weekend", note: "No game" },
+  { week: 3, label: "Bye" },
+  { week: 10, label: "Bye", note: "Regular season finale" },
 ];
 
 export const seasonMilestones = [
   { label: "First practice", value: "Monday, August 10, 2026" },
-  { label: "Games begin", value: "Weekend of August 29 – 30, 2026" },
-  { label: "Game days", value: "Sat mornings & Sun afternoons" },
+  { label: "Games begin", value: "Saturday, August 29, 2026" },
+  { label: "Regular season ends", value: "Week of October 24, 2026" },
   { label: "Full schedule", value: "Live on TeamSideline" },
-];
-
-/** Recurring game-time pattern, per Coach Caitlin's Aug 20 email. One-off exceptions listed separately. */
-export const gameTimePattern = [
-  "Most Saturdays: 9:00 AM or 10:00 AM",
-  "Most Sundays: early afternoon",
-];
-
-export const gameExceptions = [
-  { date: "Monday, September 14", time: "6:00 PM", note: "The one weekday game — falls during a normal practice slot." },
 ];
 
 export const equipment = [

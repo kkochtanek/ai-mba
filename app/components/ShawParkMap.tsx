@@ -1,8 +1,9 @@
-type FieldId = "3" | "5" | "5B" | "6" | "6D";
+type FieldId = "3" | "3A" | "5" | "5B" | "6" | "6D";
 
 /** Percent position of each field's number badge, read directly off the source PDF's text layer. */
 const FIELD_POS: Record<FieldId, { x: number; y: number }> = {
-  "3": { x: 68.6, y: 44.5 },
+  "3": { x: 68.3, y: 43.0 },
+  "3A": { x: 69.5, y: 47.5 },
   "5": { x: 36.1, y: 58.9 },
   "5B": { x: 41.8, y: 54.4 },
   "6": { x: 22.1, y: 58.8 },

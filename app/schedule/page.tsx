@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
-import { practices, seasonMilestones, team, nextEvent, games, gameTimePattern, gameExceptions } from "@/lib/team-data";
+import { practices, seasonMilestones, team, nextEvent, games, byeWeeks } from "@/lib/team-data";
 import ShawParkMap from "../components/ShawParkMap";
 
 export const metadata: Metadata = {
   title: "Schedule — Meramec Kindergarten Purple Popsicles",
 };
 
+type Row =
+  | { kind: "game"; week: number; game: (typeof games)[number] }
+  | { kind: "bye"; week: number; bye: (typeof byeWeeks)[number] };
+
 export default function SchedulePage() {
+  const rows: Row[] = [
+    ...games.map((game) => ({ kind: "game" as const, week: game.week, game })),
+    ...byeWeeks.map((bye) => ({ kind: "bye" as const, week: bye.week, bye })),
+  ].sort((a, b) => a.week - b.week);
+
   return (
     <div className="max-w-5xl mx-auto px-5 py-14">
       <p className="text-xs uppercase tracking-widest text-orange-700 font-bold mb-2">
@@ -14,8 +23,8 @@ export default function SchedulePage() {
       </p>
       <h1 className="font-display text-5xl text-navy-900 mb-3">Schedule</h1>
       <p className="text-text-muted max-w-2xl mb-10">
-        Practices happen every week at Shaw Park. Games start the weekend of
-        August 29th — the full slate is live on TeamSideline.
+        Monday practices continue all season. Full 2026 game slate below, from
+        TeamSideline (Clayton / Coach McGrath, Kindergarten Red).
       </p>
 
       <div className="grid gap-8 lg:grid-cols-5">
@@ -43,60 +52,51 @@ export default function SchedulePage() {
           </section>
 
           <section className="bg-white border border-navy-100 p-7 shadow-sm">
-            <h2 className="font-display text-xl text-navy-900 mb-4 border-b-2 border-orange-600 pb-2">
+            <h2 className="font-display text-xl text-navy-900 mb-5 border-b-2 border-orange-600 pb-2">
               Games
             </h2>
-
-            {games.length > 0 && (
-              <div className="space-y-3 mb-5">
-                {games.map((g) => (
-                  <div key={g.date} className="flex gap-4">
-                    <span className="font-display text-3xl text-orange-600 leading-none w-14 shrink-0">
-                      {g.field}
+            <div className="divide-y divide-navy-100">
+              {rows.map((row) =>
+                row.kind === "game" ? (
+                  <div key={`g-${row.week}`} className="py-4 flex gap-4">
+                    <span className="font-display text-2xl text-orange-600 leading-none w-14 shrink-0 pt-0.5">
+                      {row.game.field ?? "—"}
                     </span>
-                    <div>
-                      <p className="font-bold text-navy-900">
-                        {g.date} · {g.time}
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                        <p className="font-bold text-navy-900">{row.game.date}</p>
+                        <span className="text-xs font-bold uppercase tracking-wide text-orange-700">
+                          {row.game.home ? "Home" : "Away"}
+                        </span>
+                      </div>
+                      <p className="text-sm text-navy-700">
+                        {row.game.time} vs. <strong>{row.game.opponent}</strong>
                       </p>
-                      <p className="text-sm text-navy-700 font-semibold">{g.location}</p>
-                      {g.opponent && <p className="text-sm text-navy-700">vs. {g.opponent}</p>}
-                      {g.note && <p className="text-sm text-text-muted mt-0.5">{g.note}</p>}
+                      <p className="text-sm text-text-muted mt-0.5">{row.game.location}</p>
+                      {row.game.note && (
+                        <p className="text-sm text-orange-700 mt-1 font-semibold">{row.game.note}</p>
+                      )}
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
-
-            <p className="text-xs font-bold uppercase tracking-wide text-text-muted mb-2">
-              Beyond that, the recurring pattern
-            </p>
-            <ul className="space-y-2 text-sm text-navy-700 mb-4">
-              {gameTimePattern.map((line) => (
-                <li key={line}>• {line}</li>
-              ))}
-              <li>• Snack rotation sign-up shared once game dates are set</li>
-            </ul>
-
-            {gameExceptions.length > 0 && (
-              <div className="bg-orange-100 border border-orange-600/30 rounded p-3 mb-4">
-                <p className="text-xs font-bold uppercase tracking-wide text-orange-700 mb-1">
-                  Schedule Exception
-                </p>
-                {gameExceptions.map((g) => (
-                  <p key={g.date} className="text-sm text-navy-900">
-                    <strong>{g.date} · {g.time}</strong> — {g.note}
-                  </p>
-                ))}
-              </div>
-            )}
+                ) : (
+                  <div key={`b-${row.week}`} className="py-3 flex gap-4 items-baseline">
+                    <span className="font-display text-lg text-navy-100 w-14 shrink-0">—</span>
+                    <p className="text-sm text-text-muted">
+                      Week {row.week}: <span className="font-semibold text-navy-700">{row.bye.label}</span>
+                      {row.bye.note ? ` — ${row.bye.note}` : ""}
+                    </p>
+                  </div>
+                )
+              )}
+            </div>
 
             <a
               href={team.teamSidelineUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-orange-700 underline hover:text-orange-600 text-sm"
+              className="font-bold text-orange-700 underline hover:text-orange-600 text-sm inline-block mt-5"
             >
-              View the full schedule on TeamSideline →
+              View live on TeamSideline →
             </a>
           </section>
 
