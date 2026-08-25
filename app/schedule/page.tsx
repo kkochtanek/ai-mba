@@ -3,7 +3,7 @@ import { practices, seasonMilestones, team, nextEvent, gameTimePattern, gameExce
 import ShawParkMap from "../components/ShawParkMap";
 
 export const metadata: Metadata = {
-  title: "Schedule — Meramec Kindergarten Purple Team",
+  title: "Schedule — Meramec Kindergarten Purple Popsicles",
 };
 
 export default function SchedulePage() {

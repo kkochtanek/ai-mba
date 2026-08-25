@@ -12,14 +12,20 @@ export default function Home() {
         <div className="absolute inset-0 bg-dot-pattern opacity-[0.08]" />
         <div className="absolute top-0 right-0 w-40 h-3 stripe-edge -rotate-12 translate-x-10 -translate-y-1 opacity-80" />
         <div className="relative max-w-5xl mx-auto px-5 py-20 sm:py-28 text-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/purple-popsicles-logo.jpg"
+            alt="Purple Popsicles crest"
+            className="w-28 h-28 sm:w-36 sm:h-36 rounded-full object-cover border-4 border-orange-600 shadow-lg mx-auto mb-6"
+          />
           <span className="inline-flex items-center gap-2 border border-orange-600 text-orange-600 rounded-none px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-6">
             {team.league}
           </span>
           <h1 className="font-display text-5xl sm:text-7xl leading-[0.95] mb-5">
-            Go Purple!
+            Go Purple Popsicles!
           </h1>
           <p className="text-lg sm:text-xl text-navy-100/85 max-w-2xl mx-auto mb-8 font-medium">
-            The Meramec Kindergarten Purple Team — {team.roster} kindergartners from{" "}
+            The Meramec Kindergarten Purple Popsicles — {team.roster} kindergartners from{" "}
             {team.school} playing their very first season of soccer together at Shaw
             Park, {team.city}.
           </p>
@@ -84,8 +90,8 @@ export default function Home() {
         <div className="sm:col-span-3 bg-white border border-navy-100 p-5">
           <ShawParkMap activeField={nextEvent.field} />
           <p className="text-xs text-text-muted mt-3">
-            Schematic layout of Shaw Park — Field {nextEvent.field} is highlighted for the
-            next practice or game.
+            Official Shaw Park field map (City of Clayton) — Field {nextEvent.field} is
+            pinned for the next practice or game.
           </p>
         </div>
       </section>

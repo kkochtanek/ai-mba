@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { coaches, team } from "@/lib/team-data";
 
 export const metadata: Metadata = {
-  title: "Contact — Meramec Kindergarten Purple Team",
+  title: "Contact — Meramec Kindergarten Purple Popsicles",
 };
 
 export default function ContactPage() {

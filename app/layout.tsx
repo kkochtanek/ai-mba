@@ -19,9 +19,9 @@ const barlow = Barlow({
 });
 
 export const metadata: Metadata = {
-  title: "Meramec Kindergarten Soccer — Purple Team",
+  title: "Meramec Kindergarten Soccer — Purple Popsicles",
   description:
-    "Official team site for the Meramec Kindergarten Purple Team — City of Clayton Youth Soccer, 2026 season. Practices, schedule, coaches, and team news.",
+    "Official team site for the Meramec Kindergarten Purple Popsicles — City of Clayton Youth Soccer, 2026 season. Practices, schedule, coaches, and team news.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

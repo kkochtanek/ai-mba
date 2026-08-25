@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import Crest from "./Crest";
 
 const links = [
   { href: "/", label: "Home" },
@@ -19,13 +18,14 @@ export default function Nav() {
     <header className="sticky top-0 z-30 bg-navy-900 border-b-[3px] border-orange-600">
       <div className="max-w-5xl mx-auto px-5 flex items-center justify-between h-16">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <Crest className="w-9 h-9" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/purple-popsicles-logo.jpg" alt="Purple Popsicles crest" className="w-10 h-10 rounded-full object-cover border-2 border-orange-600" />
           <span className="leading-tight">
             <span className="block font-display text-white text-base tracking-wide">
               Meramec Kindergarten
             </span>
             <span className="block text-[0.65rem] font-bold tracking-[0.14em] text-orange-600 uppercase">
-              Purple Team · 2026
+              Purple Popsicles · 2026
             </span>
           </span>
         </Link>

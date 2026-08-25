@@ -1,5 +1,4 @@
 import { team } from "@/lib/team-data";
-import Crest from "./Crest";
 
 export default function Footer() {
   return (
@@ -8,10 +7,11 @@ export default function Footer() {
       <div className="bg-navy-900 text-navy-100">
         <div className="max-w-5xl mx-auto px-5 py-12 grid gap-8 sm:grid-cols-3 text-sm">
           <div className="flex gap-3">
-            <Crest className="w-9 h-9 shrink-0" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/purple-popsicles-logo.jpg" alt="Purple Popsicles crest" className="w-10 h-10 rounded-full object-cover border-2 border-orange-600 shrink-0" />
             <div>
               <p className="font-display text-white text-base tracking-wide mb-2">
-                Meramec Kindergarten · Purple Team
+                Meramec Kindergarten · Purple Popsicles
               </p>
               <p className="text-navy-100/80">
                 {team.league}
@@ -49,7 +49,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-white/10 py-4 text-center text-xs text-navy-100/60 font-semibold uppercase tracking-wide">
-          Go Purple! · {team.season}
+          Go Purple Popsicles! · {team.season}
         </div>
       </div>
     </footer>

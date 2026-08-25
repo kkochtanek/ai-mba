@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { news, team } from "@/lib/team-data";
 
 export const metadata: Metadata = {
-  title: "News — Meramec Kindergarten Purple Team",
+  title: "News — Meramec Kindergarten Purple Popsicles",
 };
 
 const tagStyles: Record<string, string> = {

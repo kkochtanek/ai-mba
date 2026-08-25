@@ -1,6 +1,6 @@
 export const team = {
   name: "Meramec Kindergarten Soccer",
-  shortName: "Purple Team",
+  shortName: "Purple Popsicles",
   season: "2026 Season",
   league: "City of Clayton Parks & Recreation Youth Soccer",
   school: "Meramec Elementary",

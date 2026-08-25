@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { coaches, players, team } from "@/lib/team-data";
 
 export const metadata: Metadata = {
-  title: "Team — Meramec Kindergarten Purple Team",
+  title: "Team — Meramec Kindergarten Purple Popsicles",
 };
 
 export default function TeamPage() {
@@ -13,7 +13,7 @@ export default function TeamPage() {
       </p>
       <h1 className="font-display text-5xl text-navy-900 mb-3">Team Directory</h1>
       <p className="text-text-muted max-w-2xl mb-10">
-        Coaches and players for the Purple Team, with contact info for each family.
+        Coaches and players for the Purple Popsicles, with contact info for each family.
       </p>
 
       <section className="mb-14">
