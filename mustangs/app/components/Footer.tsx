@@ -1,5 +1,4 @@
 import { team, coaches } from "@/lib/team-data";
-import Crest from "./Crest";
 
 export default function Footer() {
   const headCoach = coaches[0];
@@ -10,7 +9,8 @@ export default function Footer() {
       <div className="bg-navy-900 text-navy-100">
         <div className="max-w-5xl mx-auto px-5 py-12 grid gap-8 sm:grid-cols-3 text-sm">
           <div className="flex gap-3">
-            <Crest className="w-10 h-10 shrink-0" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/mustangs-logo.png" alt="Mustangs crest" className="w-12 h-12 object-contain shrink-0" />
             <div>
               <p className="font-display text-white text-base tracking-wide mb-2">
                 Meramec 2nd Grade · Mustangs

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import ShawParkMap from "./components/ShawParkMap";
-import Crest from "./components/Crest";
 import { team, seasonMilestones, news, practices, nextEvent } from "@/lib/team-data";
 
 export default function Home() {
@@ -13,7 +12,12 @@ export default function Home() {
         <div className="absolute inset-0 bg-dot-pattern opacity-[0.08]" />
         <div className="absolute top-0 right-0 w-40 h-3 stripe-edge -rotate-12 translate-x-10 -translate-y-1 opacity-80" />
         <div className="relative max-w-5xl mx-auto px-5 py-20 sm:py-28 text-center">
-          <Crest className="w-28 h-28 sm:w-36 sm:h-36 drop-shadow-lg mx-auto mb-6" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/mustangs-logo.png"
+            alt="Mustangs crest"
+            className="w-40 h-40 sm:w-52 sm:h-52 object-contain drop-shadow-lg mx-auto mb-6"
+          />
           <span className="inline-flex items-center gap-2 border border-silver-600 text-silver-600 rounded-none px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-6">
             {team.league}
           </span>
