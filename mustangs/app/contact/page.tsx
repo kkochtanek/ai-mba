@@ -13,11 +13,11 @@ export default function ContactPage() {
       </p>
       <h1 className="font-display text-5xl text-navy-900 mb-3">Contact</h1>
       <p className="text-text-muted mb-10">
-        Reach out to a coach directly, or see the full{" "}
+        See the full{" "}
         <a href="/team" className="font-bold text-silver-700 underline">
           team directory
         </a>{" "}
-        for every family&apos;s contact info.
+        for family contact info.
       </p>
 
       <section className="bg-white border border-navy-100 p-7 shadow-sm mb-6">
@@ -29,15 +29,9 @@ export default function ContactPage() {
             <li key={c.name} className="py-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
               <div>
                 <span className="font-bold text-navy-900">{c.name}</span>{" "}
-                <span className="text-xs font-bold uppercase tracking-wide text-silver-700">{c.role}</span>{" "}
-                {c.note && <span className="text-xs text-text-muted">({c.note})</span>}
+                <span className="text-xs font-bold uppercase tracking-wide text-silver-700">{c.role}</span>
               </div>
-              <div className="text-sm text-text-muted flex gap-4">
-                <a href={`mailto:${c.email}`} className="hover:text-navy-900 underline decoration-navy-100">
-                  {c.email}
-                </a>
-                {c.phone && <span>{c.phone}</span>}
-              </div>
+              {c.phone && <span className="text-sm text-text-muted">{c.phone}</span>}
             </li>
           ))}
         </ul>

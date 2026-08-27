@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { practices, seasonMilestones, team, nextEvent, games, byeWeeks, coaches } from "@/lib/team-data";
+import { practices, seasonMilestones, team, nextEvent, games, byeWeeks } from "@/lib/team-data";
 import ShawParkMap from "../components/ShawParkMap";
 
 export const metadata: Metadata = {
@@ -15,8 +15,6 @@ export default function SchedulePage() {
     ...games.map((game) => ({ kind: "game" as const, week: game.week, game })),
     ...byeWeeks.map((bye) => ({ kind: "bye" as const, week: bye.week, bye })),
   ].sort((a, b) => a.week - b.week);
-
-  const headCoach = coaches[0];
 
   return (
     <div className="max-w-5xl mx-auto px-5 py-14">
@@ -91,15 +89,6 @@ export default function SchedulePage() {
                 )
               )}
             </div>
-
-            <p className="text-sm text-text-muted mt-5">
-              Need the kickoff time, opponent, or field for a game before it&apos;s
-              listed here? Email Coach Dan at{" "}
-              <a href={`mailto:${headCoach.email}`} className="font-bold text-silver-700 underline hover:text-navy-600">
-                {headCoach.email}
-              </a>
-              .
-            </p>
           </section>
 
           <section className="bg-navy-900 text-white p-7">

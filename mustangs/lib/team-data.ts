@@ -14,16 +14,14 @@ export type Coach = {
   name: string;
   initials: string;
   role: string;
-  email: string;
   phone?: string;
-  note?: string;
 };
 
 export const coaches: Coach[] = [
-  { name: "Dan Combest", initials: "DC", role: "Head Coach", email: "dan.combest@gmail.com", note: "Sam's dad" },
-  { name: "Joel Brightfield", initials: "JB", role: "Assistant Coach", email: "jbrightf@gmail.com", note: "Ollie's dad" },
-  { name: "Kyle Kochtanek", initials: "KK", role: "Assistant Coach", email: "kkochtanek@gmail.com", note: "Leo's dad" },
-  { name: "Ilijas G.", initials: "IG", role: "Assistant Coach", email: "ilijasg@gmail.com", note: "Adam's dad" },
+  { name: "Dan Combest", initials: "DC", role: "Head Coach" },
+  { name: "Joel Brightfield", initials: "JB", role: "Assistant Coach" },
+  { name: "Kyle Kochtanek", initials: "KK", role: "Assistant Coach" },
+  { name: "Ilijas G.", initials: "IG", role: "Assistant Coach" },
 ];
 
 export type Guardian = {
@@ -32,35 +30,31 @@ export type Guardian = {
   phone?: string;
 };
 
-export type Player = {
-  name: string;
+export type Family = {
   guardians: Guardian[];
 };
 
-/** Confirmed so far from coach emails and the snack sign-up sheet — 9 of 16. More to add as they come in. */
-export const players: Player[] = [
-  { name: "Sam Combest", guardians: [{ name: "Dan Combest", email: "dan.combest@gmail.com" }] },
+/** Guardian contacts confirmed so far from coach emails and the snack sign-up sheet — 9 of 16 families. More to add as they come in. Kids' names are intentionally left off this public site. */
+export const families: Family[] = [
+  { guardians: [{ name: "Dan Combest", email: "dan.combest@gmail.com" }] },
   {
-    name: "Ollie Brightfield",
     guardians: [
       { name: "Joel Brightfield", email: "jbrightf@gmail.com" },
       { name: "Rachael Brightfield", email: "rachael.brightfield@gmail.com" },
     ],
   },
-  { name: "Adam G.", guardians: [{ name: "Ilijas G.", email: "ilijasg@gmail.com" }] },
+  { guardians: [{ name: "Ilijas G.", email: "ilijasg@gmail.com" }] },
   {
-    name: "Leo Kochtanek",
     guardians: [
       { name: "Kyle Kochtanek", email: "kkochtanek@gmail.com" },
       { name: "Ali Kochtanek", email: "alyssa.kochtanek@gmail.com" },
     ],
   },
-  { name: "Pierce Pa", guardians: [{ name: "Rachel Pa", email: "rjoypa@gmail.com" }] },
-  { name: "Ben Brenner", guardians: [{ name: "John Brenner", email: "johnlbrenner@gmail.com" }] },
-  { name: "Louis Gerson", guardians: [{ email: "egerson@ameren.com" }] },
-  { name: "Ford Bauer", guardians: [{ name: "Alicia Bauer", email: "aliciabauer@hotmail.com" }] },
+  { guardians: [{ name: "Rachel Pa", email: "rjoypa@gmail.com" }] },
+  { guardians: [{ name: "John Brenner", email: "johnlbrenner@gmail.com" }] },
+  { guardians: [{ email: "egerson@ameren.com" }] },
+  { guardians: [{ name: "Alicia Bauer", email: "aliciabauer@hotmail.com" }] },
   {
-    name: "Joey Levy",
     guardians: [
       { name: "Katie Kovács", email: "katherine.j.kovacs@gmail.com" },
       { name: "David Levy", email: "david.f.levy@gmail.com" },
@@ -157,7 +151,7 @@ export const games: Game[] = [
     home: true,
     opponent: "New City (Upton)",
     location: "Shaw Park, Field 5B",
-    note: "Snack: Adam's family",
+    note: "Snack: G. family",
   },
   {
     week: 10,
@@ -215,7 +209,7 @@ export const news: NewsItem[] = [
   {
     date: "August 21, 2026",
     title: "Jerseys arriving — add a last name?",
-    body: "Coach Dan let parents know jerseys are on the way, with the option to add last names to the back. Rachael Brightfield and Stephanie Goette are coordinating — $20 via Venmo (@stephgoette) if you want in.",
+    body: "Coach Dan let parents know jerseys are on the way, with the option to add last names to the back. Rachael Brightfield and Stephanie Goette are coordinating the sign-up for anyone who wants in.",
     tag: "Announcement",
   },
   {
@@ -233,7 +227,7 @@ export const news: NewsItem[] = [
   {
     date: "August 2, 2026",
     title: "Welcome to 2nd Grade Meramec Soccer!",
-    body: "Coach Dan's season kickoff email: 16 kids on the roster, playing 8v8 with a goalie. Practices start Wednesday, August 12th at Shaw Park. Coach Dan is joined by Joel (Ollie's dad), Kyle (Leo's dad), and Ilijas (Adam's dad).",
+    body: "Coach Dan's season kickoff email: 16 kids on the roster, playing 8v8 with a goalie. Practices start Wednesday, August 12th at Shaw Park. Coach Dan is joined by assistant coaches Joel, Kyle, and Ilijas.",
     tag: "Announcement",
   },
 ];

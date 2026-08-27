@@ -1,8 +1,6 @@
-import { team, coaches } from "@/lib/team-data";
+import { team } from "@/lib/team-data";
 
 export default function Footer() {
-  const headCoach = coaches[0];
-
   return (
     <footer className="mt-20">
       <div className="h-2 stripe-edge" />
@@ -37,15 +35,14 @@ export default function Footer() {
               Schedule Questions
             </p>
             <p className="text-navy-100/80">
-              Coach Dan has the full game schedule with times, opponents, and
-              fields —{" "}
+              Full game schedule with times, opponents, and fields is on the{" "}
               <a
-                href={`mailto:${headCoach.email}`}
+                href="/schedule"
                 className="underline decoration-silver-600/60 text-white hover:text-silver-600"
               >
-                {headCoach.email}
-              </a>
-              .
+                Schedule
+              </a>{" "}
+              page.
             </p>
           </div>
         </div>
