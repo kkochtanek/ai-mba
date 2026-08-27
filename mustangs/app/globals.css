@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f2f4f7;
+  --foreground: #0a1626;
+
+  --navy-900: #081428;
+  --navy-700: #10233f;
+  --navy-600: #1c3f73;
+  --navy-100: #dbe2ee;
+  --navy-50: #edf0f6;
+
+  --silver-700: #414d5e;
+  --silver-600: #7c8798;
+  --silver-100: #e3e7ed;
+
+  --text-muted: #4a5567;
+  --border: #dbe1ea;
+  --shadow: 0 1px 2px rgba(8, 20, 40, 0.05), 0 10px 26px rgba(8, 20, 40, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy-900: var(--navy-900);
+  --color-navy-700: var(--navy-700);
+  --color-navy-600: var(--navy-600);
+  --color-navy-100: var(--navy-100);
+  --color-navy-50: var(--navy-50);
+  --color-silver-700: var(--silver-700);
+  --color-silver-600: var(--silver-600);
+  --color-silver-100: var(--silver-100);
+  --color-text-muted: var(--text-muted);
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-anton);
+  --font-body: var(--font-barlow);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-barlow), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-anton), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+}
+
+.stripe-edge {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--silver-600),
+    var(--silver-600) 14px,
+    var(--navy-900) 14px,
+    var(--navy-900) 28px
+  );
+}
