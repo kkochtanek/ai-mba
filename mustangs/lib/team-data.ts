@@ -81,43 +81,110 @@ export const practices = [
 export type Game = {
   week: number;
   date: string;
-  opponent?: string;
-  time?: string;
-  location?: string;
+  home: boolean;
+  opponent: string;
+  time: string;
+  location: string;
   note?: string;
 };
 
 export type ByeWeek = {
   week: number;
   label: string;
+  note?: string;
 };
 
-/**
- * Game dates confirmed via the team snack sign-up sheet. Dan's schedule PDF has the
- * exact times, opponents, and fields for each — not yet transcribed here.
- */
+/** Full schedule confirmed from TeamSideline (Clayton / Combest), revised Aug 18, 2026. */
 export const games: Game[] = [
-  { week: 1, date: "Saturday, August 29, 2026", note: "Season opener — snack: Combest family" },
-  { week: 3, date: "Saturday, September 12, 2026", note: "Snack: Pa family" },
-  { week: 4, date: "Sunday, September 20, 2026", note: "Snack: Brenner family" },
-  { week: 5, date: "Saturday, September 26, 2026", note: "Snack: Gerson family" },
-  { week: 6, date: "Sunday, October 4, 2026", note: "Snack: Levy family" },
-  { week: 7, date: "Sunday, October 11, 2026", note: "Snack: Bauer family" },
-  { week: 8, date: "Saturday, October 17, 2026", note: "Snack: Brightfield family" },
-  { week: 9, date: "Saturday, October 24, 2026", note: "Snack: Adam's family" },
+  {
+    week: 1,
+    date: "Saturday, August 29, 2026",
+    time: "10:00 AM",
+    home: true,
+    opponent: "Clayton (Saliba/Courter)",
+    location: "Shaw Park, Field 5B",
+    note: "Season opener — snack: Combest family",
+  },
+  {
+    week: 3,
+    date: "Saturday, September 12, 2026",
+    time: "11:00 AM",
+    home: true,
+    opponent: "Community School (Mason/Maritz)",
+    location: "Shaw Park, Field 5B",
+    note: "Snack: Pa family",
+  },
+  {
+    week: 5,
+    date: "Saturday, September 26, 2026",
+    time: "12:00 PM",
+    home: false,
+    opponent: "U-City (Ousterhout)",
+    location: "Shaw Park, Field 5B",
+    note: "Snack: Gerson family",
+  },
+  {
+    week: 6,
+    date: "Sunday, October 4, 2026",
+    time: "2:00 PM",
+    home: false,
+    opponent: "College School (Flavin)",
+    location: "Shaw Park, Field 5B",
+    note: "Snack: Levy family",
+  },
+  {
+    week: 7,
+    date: "Saturday, October 10, 2026",
+    time: "12:00 PM",
+    home: true,
+    opponent: "MRH (Theby)",
+    location: "Shaw Park, Field 5B",
+    note: "Snack sheet lists Bauer family for Oct 11 — closest game is this one, worth confirming with Coach Dan.",
+  },
+  {
+    week: 8,
+    date: "Saturday, October 17, 2026",
+    time: "11:00 AM",
+    home: false,
+    opponent: "Central Christian (Lohrman)",
+    location: "Shaw Park, Field 5B",
+    note: "Snack: Brightfield family",
+  },
+  {
+    week: 9,
+    date: "Saturday, October 24, 2026",
+    time: "11:00 AM",
+    home: true,
+    opponent: "New City (Upton)",
+    location: "Shaw Park, Field 5B",
+    note: "Snack: Adam's family",
+  },
+  {
+    week: 10,
+    date: "Sunday, November 1, 2026",
+    time: "3:00 PM",
+    home: true,
+    opponent: "U-City (Ousterhout)",
+    location: "Shaw Park, Field 5B",
+    note: "Snack sign-up not yet confirmed for this one.",
+  },
 ];
 
 export const byeWeeks: ByeWeek[] = [
   { week: 2, label: "Off — Labor Day weekend" },
-  { week: 10, label: "Bye" },
+  {
+    week: 4,
+    label: "Bye",
+    note: "Snack sheet lists Brenner family for Sept 20 — there's no game that week, so this may be a leftover from an earlier draft schedule.",
+  },
   { week: 11, label: "Bye — regular season finale" },
 ];
 
 export const seasonMilestones = [
   { label: "First practice", value: "Wednesday, August 12, 2026" },
   { label: "Games begin", value: "Saturday, August 29, 2026" },
-  { label: "Regular season ends", value: "Week of October 24, 2026" },
-  { label: "Full schedule", value: "See Dan's schedule email" },
+  { label: "Regular season ends", value: "Sunday, November 1, 2026" },
+  { label: "TeamSideline", value: "Clayton / Combest" },
 ];
 
 export const equipment = [

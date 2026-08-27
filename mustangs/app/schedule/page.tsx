@@ -25,10 +25,8 @@ export default function SchedulePage() {
       </p>
       <h1 className="font-display text-5xl text-navy-900 mb-3">Schedule</h1>
       <p className="text-text-muted max-w-2xl mb-10">
-        Wednesday practices continue all season. Game dates below are confirmed
-        from the team snack sign-up — exact kickoff times, opponents, and fields
-        are in Coach Dan&apos;s schedule email and will be added here as they&apos;re
-        confirmed.
+        Wednesday practices continue all season. Full 2026 game slate below,
+        from TeamSideline (Clayton / Combest).
       </p>
 
       <div className="grid gap-8 lg:grid-cols-5">
@@ -67,15 +65,16 @@ export default function SchedulePage() {
                       W{row.week}
                     </span>
                     <div className="flex-1">
-                      <p className="font-bold text-navy-900">{row.game.date}</p>
-                      {row.game.opponent && (
-                        <p className="text-sm text-navy-700">
-                          {row.game.time} vs. <strong>{row.game.opponent}</strong>
-                        </p>
-                      )}
-                      {row.game.location && (
-                        <p className="text-sm text-text-muted mt-0.5">{row.game.location}</p>
-                      )}
+                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                        <p className="font-bold text-navy-900">{row.game.date}</p>
+                        <span className="text-xs font-bold uppercase tracking-wide text-silver-700">
+                          {row.game.home ? "Home" : "Away"}
+                        </span>
+                      </div>
+                      <p className="text-sm text-navy-700">
+                        {row.game.time} vs. <strong>{row.game.opponent}</strong>
+                      </p>
+                      <p className="text-sm text-text-muted mt-0.5">{row.game.location}</p>
                       {row.game.note && (
                         <p className="text-sm text-silver-700 mt-1 font-semibold">{row.game.note}</p>
                       )}
@@ -86,6 +85,7 @@ export default function SchedulePage() {
                     <span className="font-display text-lg text-navy-100 w-14 shrink-0">—</span>
                     <p className="text-sm text-text-muted">
                       Week {row.week}: <span className="font-semibold text-navy-700">{row.bye.label}</span>
+                      {row.bye.note ? ` — ${row.bye.note}` : ""}
                     </p>
                   </div>
                 )
