@@ -79,6 +79,7 @@ export type Game = {
   opponent: string;
   time: string;
   location: string;
+  result?: string;
   note?: string;
 };
 
@@ -97,6 +98,7 @@ export const games: Game[] = [
     home: true,
     opponent: "Clayton (Saliba/Courter)",
     location: "Shaw Park, Field 5B",
+    result: "Final: tied 2–2",
     note: "Season opener — snack: Combest family",
   },
   {
@@ -160,7 +162,7 @@ export const games: Game[] = [
     home: true,
     opponent: "U-City (Ousterhout)",
     location: "Shaw Park, Field 5B",
-    note: "Snack sign-up not yet confirmed for this one.",
+    note: "Rescheduled from the original Week 4 date — snack sign-up not yet confirmed for this one.",
   },
 ];
 
@@ -169,7 +171,7 @@ export const byeWeeks: ByeWeek[] = [
   {
     week: 4,
     label: "Bye",
-    note: "Snack sheet lists Brenner family for Sept 20 — there's no game that week, so this may be a leftover from an earlier draft schedule.",
+    note: "This week's game was moved to November (now the Nov 1 game, Week 10) when Clayton Sports revised the schedule.",
   },
   { week: 11, label: "Bye — regular season finale" },
 ];
@@ -206,6 +208,18 @@ export type NewsItem = {
 };
 
 export const news: NewsItem[] = [
+  {
+    date: "August 29, 2026",
+    title: "Season opener: Mustangs tie 2–2",
+    body: "The Mustangs opened the season with a 2–2 tie at Shaw Park #5B. Coach Dan said if everyone shows up, every player gets at least 50% playing time — good energy for game one.",
+    tag: "Announcement",
+  },
+  {
+    date: "August 27, 2026",
+    title: "First game, jersey collection, and a schedule update",
+    body: "Coach Dan previewed the season opener (Sat 8/29, 10:00 AM, Shaw Park #5B) and asked players to bring an extra shirt to the game so jerseys can be collected afterward, get names added to the back, and be washed and returned before the next game. Reminder to bring water and shin guards to every practice and game. Clayton Sports also revised the schedule — Week 4 is now a bye, with that game moved to November.",
+    tag: "Schedule",
+  },
   {
     date: "August 21, 2026",
     title: "Jerseys arriving — add a last name?",

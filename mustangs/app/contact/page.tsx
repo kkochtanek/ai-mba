@@ -13,11 +13,11 @@ export default function ContactPage() {
       </p>
       <h1 className="font-display text-5xl text-navy-900 mb-3">Contact</h1>
       <p className="text-text-muted mb-10">
-        See the full{" "}
+        See the{" "}
         <a href="/team" className="font-bold text-silver-700 underline">
           team directory
         </a>{" "}
-        for family contact info.
+        for coaching staff. Family contacts go out directly from Coach Dan.
       </p>
 
       <section className="bg-white border border-navy-100 p-7 shadow-sm mb-6">

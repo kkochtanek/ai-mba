@@ -68,6 +68,11 @@ export default function SchedulePage() {
                         <span className="text-xs font-bold uppercase tracking-wide text-silver-700">
                           {row.game.home ? "Home" : "Away"}
                         </span>
+                        {row.game.result && (
+                          <span className="text-xs font-bold uppercase tracking-wide text-navy-700">
+                            {row.game.result}
+                          </span>
+                        )}
                       </div>
                       <p className="text-sm text-navy-700">
                         {row.game.time} vs. <strong>{row.game.opponent}</strong>
